@@ -7,7 +7,7 @@ const app = new Koa()
 const router = new Router()
 
 router.get(`/`, async (ctx) => {
-    ctx.response.body = 'liniot'
+    ctx.response.body = 'linxot push demo'
 })
 
 // 在「系统信息」-> 「开发配置」菜单下配置推送 URL 时，会调用这个接口
@@ -31,7 +31,7 @@ router.get(`/pushCallback`, async (ctx) => {
 // 有告警等数据时，会回调这个接口
 router.post(`/pushCallback`, async (ctx) => {
     console.log('post', ctx.request.body)
-    
+
     ctx.response.body = 'success'
 })
 
