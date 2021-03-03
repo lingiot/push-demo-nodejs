@@ -1,6 +1,6 @@
 # 灵联云推送配置 Node.js Demo
 
-第一步：下载项目源码，或 使用 Git clone：
+第一步：下载项目源码，或使用 Git clone：
 
 ```
 git clone https://github.com/lingiot/push-demo-nodejs.git
