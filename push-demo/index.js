@@ -1,6 +1,5 @@
 const Koa = require('koa')
 const Router = require('koa-router')
-const sha1 = require('node-sha1')
 
 const port = 12306
 
@@ -23,22 +22,10 @@ router.get(`/pushCallback`, async (ctx) => {
     //     timestamp: '1614748801549'
     // }
 
-    // 在这里对 token、signature 之类的参数进行安全性校验，防止他人恶意调用接口（可选）
-    const { echostr, nonce, signature, timestamp } = ctx.request.query
-    const token = 'my_token' // TODO 这里改成在灵联云配置的 token
-    // 将 token、timestamp、nonce 三个参数进行字典序排序，并拼接成一个字符串
-    const str = [token, timestamp, nonce].sort().join('')
-    // console.log('str', str)
-    // 对拼接字符串进行 SHA1 加密 
-    const text = sha1(str).toUpperCase()
-    // 开发者获得加密后的字符串可与 signature 对比
-    if (text === signature) {
-        // TODO 是灵联服务器的请求，在这里写相关的业务逻辑
-        console.log('ok')
-    }
+    // TODO 在这里对 token、signature 之类的参数进行安全性校验，防止他人恶意调用接口（可选）
 
     // 返回 echostr
-    ctx.response.body = echostr
+    ctx.response.body = ctx.request.query.echostr
 })
 
 // 有告警等数据时，会回调这个接口
